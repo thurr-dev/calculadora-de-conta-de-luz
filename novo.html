@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ARTE & AMOR</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+            background-color: #fffaf8;
+            color: #444;
+        }
+
+        header {
+            background-color: #ffd6d6;
+            text-align: center;
+            padding: 2rem 1rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+            color: #7d5a5a;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #8b6d6d;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.03); /* leve zoom ao passar o mouse */
+        }
+
+        .card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 16px 16px 0 0;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card-content {
+            padding: 1rem;
+        }
+
+        .card-content h3 {
+            margin-top: 0;
+            color: #7d5a5a;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #e57373;
+            margin-bottom: 0.5rem;
+        }
+
+        .controls { /* NOVO: Estilo para agrupar quantidade e botão */
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .quantity-input { /* NOVO: Estilo para o campo de quantidade */
+            width: 50px;
+            padding: 5px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        .add-btn {
+            display: inline-block;
+            background-color: #f7b1b1;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.3s;
+            cursor: pointer;
+            border: none; /* Garante que o botão não tenha borda extra */
+        }
+
+        .add-btn:hover {
+            background-color: #f18c8c;
+        }
+
+        footer {
+        text-align: center;
+        padding: 1.5rem;
+        background-color: #ffd6d6;
+        color: #7d5a5a;
+        font-size: 0.9rem;
+    }
+
+    /* NOVO: Estilo para os links no rodapé */
+    footer a {
+        color: #7d5a5a;
+        text-decoration: underline;
+        font-weight: bold;
+    }
+
+    .footer-content {
+        max-width: 1100px;
+        margin: auto;
+        /* Garantindo que o conteúdo interno (o texto) seja centralizado */
+        text-align: center; 
+    }
+
+    .footer-content p {
+        margin: 0.5rem 0;
+    }
+
+        .cart {
+            background-color: #fff;
+            max-width: 700px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .cart h2 {
+            text-align: center;
+            color: #7d5a5a;
+        }
+
+        .cart-items {
+            list-style: none;
+            padding: 0;
+        }
+
+        .cart-items li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center; /* Alinha o texto e o botão de remover */
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .total {
+            text-align: right;
+            font-weight: bold;
+            color: #7d5a5a;
+            margin-top: 1rem;
+        }
+
+        .cart-buttons {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .cart-buttons a, .cart-buttons button {
+            display: inline-block;
+            margin: 0.4rem;
+            padding: 0.7rem 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .whatsapp {
+            background-color: #25d366;
+            color: white;
+        }
+
+        .whatsapp:hover {
+            background-color: #1ebe57;
+        }
+
+        .pix {
+            background-color: #6ec7b9;
+            color: white;
+        }
+
+        .pix:hover {
+            background-color: #58b3a5;
+        }
+
+        .mpago {
+            background-color: #009ee3;
+            color: white;
+        }
+
+        .mpago:hover {
+            background-color: #007bbd;
+        }
+
+        .contact {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .contact p {
+            margin: 0.5rem 0;
+        }
+
+        .contact a {
+            color: #25d366;
+            text-decoration: none;
+            font-weight: bold;
+        }
+		
+		/* NOVO: Estilo para o controle de quantidade no carrinho */
+    .quantity-control {
+        display: flex;
+        align-items: center;
+        gap: 5px; /* Espaçamento entre os botões e a quantidade */
+    }
+
+    .qty-btn {
+        background: none;
+        border: 1px solid #ccc;
+        color: #7d5a5a;
+        width: 25px;
+        height: 25px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background 0.2s;
+        line-height: 1;
+        padding: 0;
+    }
+
+    .qty-btn:hover {
+        background-color: #f7b1b1;
+        color: white;
+        border-color: #f7b1b1;
+    }
+
+    .item-info { /* Para alinhar o nome e os controles */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-grow: 1;
+    }
+    
+    .cart-items li {
+        /* Mantém as propriedades existentes e garante que os itens internos se alinhem */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.6rem 0;
+        border-bottom: 1px solid #eee;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ARTE & AMOR</h1>
+        <p>GRAZI RAMOS</p>
+        <p>💕Feito à mão com amor 💕</p>
+        <p>💕Podemos personalizar nas suas cores favoritas!💕</p>
+    </header>
+
+    <section class="container">
+        <div class="card" data-id="1" data-name="Porta ovos" data-price="?">
+            <img src="https://imgur.com/dLh27yT.jpg?auto=format&fit=crop&w=800&q=60" alt="Porta ovos">
+            <div class="card-content">
+                <h3>Porta ovos</h3>
+                <p class="price">R$ ?</p>
+                <p>Porta ovos feito com fio 100% algodão</p>
+                <div class="controls">
+                    <input type="number" id="qty-1" class="quantity-input" value="1" min="1">
+                    <button class="add-btn" onclick="addToCart(1)">Adicionar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="2" data-name="Tapetes" data-price="?">
+            <img src="https://i.imgur.com/nu586yZ.jpg?auto=format&fit=crop&w=800&q=60" alt="Tapete de Crochê">
+            <div class="card-content">
+                <h3>Tapetes</h3>
+                <p class="price">R$ ?</p>
+                <p>Tapete delicado e colorido, perfeito para decorar qualquer ambiente.</p>
+                <div class="controls">
+                    <input type="number" id="qty-2" class="quantity-input" value="1" min="1">
+                    <button class="add-btn" onclick="addToCart(2)">Adicionar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="3" data-name="Jogo de Banheiro" data-price="?">
+            <img src="https://imgur.com/9UlSnK9.jpg?auto=format&fit=crop&w=800&q=60" alt="Jogo de Banheiro">
+            <div class="card-content">
+                <h3>Jogo de Banheiro</h3>
+                <p class="price">R$ ?</p>
+                <p>Transforme seu banheiro em um santuário de delicadeza e estilo com este luxuoso conjunto em crochê</p>
+                <div class="controls">
+                    <input type="number" id="qty-3" class="quantity-input" value="1" min="1">
+                    <button class="add-btn" onclick="addToCart(3)">Adicionar</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-id="4" data-name="Sandália de Croché" data-price="?">
+            <img src="https://imgur.com/aMpSbnR.jpg?auto=format&fit=crop&w=800&q=60" alt="Sandália de Croché">
+            <div class="card-content">
+                <h3>Sandália de Croché</h3>
+                <p class="price">R$ ?</p>
+                <p>Mini Sandálias em Crochê</p>
+                <div class="controls">
+                    <input type="number" id="qty-4" class="quantity-input" value="1" min="1">
+                    <button class="add-btn" onclick="addToCart(4)">Adicionar</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-id="5" data-name="Capa galão de água" data-price="?">
+            <img src="https://imgur.com/pZq914Y.jpg?auto=format&fit=crop&w=800&q=60" alt="Capa galão de água">
+            <div class="card-content">
+                <h3>Capa galão de água</h3>
+                <p class="price">R$ ?</p>
+                <p>Capa feita em crochê com design moderno e toque macio.</p>
+                <div class="controls">
+                    <input type="number" id="qty-5" class="quantity-input" value="1" min="1">
+                    <button class="add-btn" onclick="addToCart(5)">Adicionar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="6" data-name="Porta papel" data-price="35">
+            <img src="https://imgur.com/GeucyNM.jpg?auto=format&fit=crop&w=800&q=60" alt="Porta papel">
+            <div class="card-content">
+                <h3>Porta papel</h3>
+                <p class="price">R$ 35,00</p>
+                <p>Um porta papel para deixar seu banheiro ainda mais bonito.</p>
+                <div class="controls">
+                    <input type="number" id="qty-6" class="quantity-input" value="1" min="1">
+                    <button class="add-btn" onclick="addToCart(6)">Adicionar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="7" data-name="Jogo Sousplat" data-price="?">
+            <img src="https://imgur.com/Qcco4WO.jpg?auto=format&fit=crop&w=800&q=60" alt="Jogo Sousplat">
+            <div class="card-content">
+                <h3>Jogo Sousplat</h3>
+                <p class="price">R$ ?</p>
+                <p>Eleve o nível da sua mesa posta! Este Jogo de Sousplat em Crochê é o toque de elegância artesanal que transforma qualquer refeição em uma celebração.</p>
+                <div class="controls">
+                    <input type="number" id="qty-7" class="quantity-input" value="1" min="1">
+                    <button class="add-btn" onclick="addToCart(7)">Adicionar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-id="8" data-name="Pano de Boneca" data-price="45">
+            <img src="https://imgur.com/Z7hGmFk.jpg?auto=format&fit=crop&w=800&q=60" alt="Pano de Boneca ">
+            <div class="card-content">
+                <h3>Pano de Boneca </h3>
+                <p class="price">R$ 45,00</p>
+                <p>O presente que encanta! Surpreenda com o nosso Pano de Boneca. É a lembrancinha artesanal ideal para quem ama a casa e não abre mão de um toque de fofura.</p>
+                <div class="controls">
+                    <input type="number" id="qty-8" class="quantity-input" value="1" min="1">
+                    <button class="add-btn" onclick="addToCart(8)">Adicionar</button>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+
+    <section class="cart">
+        <h2>🧺 Seu Carrinho</h2>
+        <ul id="cart-items" class="cart-items"></ul>
+        <p id="total" class="total">Total: R$ 0,00</p>
+        <div class="cart-buttons">
+            <button class="add-btn" onclick="clearCart()" style="background-color: #f18c8c;">Limpar Carrinho</button>
+            
+            <a href="#" class="whatsapp" id="whatsapp-btn" target="_blank">Enviar Pedido no WhatsApp</a>
+        </div>
+    </section>
+
+    <div class="contact">
+        <p>📞 Telefone: <a href="tel:+5531988133421">(31) 988133421</a></p>
+        <p>📲 WhatsApp: <a href="https://wa.me/5531988133421?text=Ol%C3%A1%2C%20tenho%20interesse%20em%20saber%20mais%20sobre%20os%20produtos" target="_blank">Falar no WhatsApp</a></p>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>
+                📍 Visite-nos: <a href="https://maps.app.goo.gl/xUiZh9mmYtKzPUWv9?g_st=ac" target="_blank">40 R. Teixeiras
+Mariana, Minas Gerais</a>
+            </p>
+            <p>© 2025 Arte em Crochê — Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        let cart = {}; // Estrutura: {id: {id: 1, name: '...', price: 10, quantity: 2, subtotal: 20}}
+        const cartList = document.getElementById('cart-items');
+        const totalElement = document.getElementById('total');
+        const whatsappBtn = document.getElementById('whatsapp-btn');
+        const whatsappNumber = '31988133421'; 
+
+        function addToCart(productId) {
+            const card = document.querySelector(`.card[data-id="${productId}"]`);
+            const quantityInput = document.getElementById(`qty-${productId}`);
+
+            const name = card.dataset.name;
+            const price = parseFloat(card.dataset.price);
+            let quantity = parseInt(quantityInput.value);
+
+            if (isNaN(quantity) || quantity <= 0) {
+                alert('Por favor, insira uma quantidade válida (mínimo 1).');
+                return;
+            }
+
+            if (cart[productId]) {
+                cart[productId].quantity += quantity;
+                cart[productId].subtotal = cart[productId].quantity * price;
+            } else {
+                cart[productId] = {
+                    id: productId,
+                    name: name,
+                    price: price, // Preço unitário
+                    quantity: quantity,
+                    subtotal: quantity * price // O total do item
+                };
+            }
+
+            quantityInput.value = '1'; 
+            updateCart();
+        }
+
+        function updateCart() {
+            cartList.innerHTML = '';
+            let total = 0;
+            let whatsappItems = [];
+
+            for (const productId in cart) {
+                const item = cart[productId];
+                
+                // Recalcula o subtotal (necessário caso a quantidade mude)
+                item.subtotal = item.quantity * item.price; 
+                total += item.subtotal;
+
+                // Monta o item na lista do carrinho
+                const li = document.createElement('li');
+                
+                // NOVO: Estrutura da lista com botões de controle
+                li.innerHTML = `
+                    <div class="item-info">
+                        ${item.name}
+                        <div class="quantity-control">
+                            <button class="qty-btn" onclick="changeQuantity(${item.id}, -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="qty-btn" onclick="changeQuantity(${item.id}, 1)">+</button>
+                        </div>
+                    </div>
+                    <span style="font-weight:bold;">R$ ${item.subtotal.toFixed(2)}</span>
+                    <button onclick="removeItem(${item.id})" style="background:none;border:none;color:#e57373;cursor:pointer;margin-left: 10px;">✕</button>
+                `;
+                cartList.appendChild(li);
+
+                // Prepara o texto para o WhatsApp
+                whatsappItems.push(`• ${item.quantity}x ${item.name} (R$ ${item.subtotal.toFixed(2)})`);
+            }
+
+            totalElement.innerText = `Total: R$ ${total.toFixed(2)}`;
+
+            // Gera a mensagem para o WhatsApp com as quantidades
+            const message = encodeURIComponent(
+                `Olá! Gostaria de fazer o seguinte pedido:\n\n${whatsappItems.join('\n')}\n\nTotal: R$ ${total.toFixed(2)}`
+            );
+
+            whatsappBtn.href = `https://wa.me/${whatsappNumber}?text=${message}`;
+        }
+
+        // NOVO: Função que muda a quantidade no carrinho
+        function changeQuantity(productId, change) {
+            const item = cart[productId];
+
+            if (!item) return; // Sai se o item não for encontrado
+
+            // Calcula a nova quantidade
+            const newQuantity = item.quantity + change;
+
+            if (newQuantity <= 0) {
+                // Se for 0 ou menos, remove o item
+                removeItem(productId);
+            } else {
+                // Caso contrário, atualiza a quantidade e o subtotal
+                item.quantity = newQuantity;
+                item.subtotal = item.quantity * item.price;
+                updateCart(); // Recarrega o carrinho para refletir a mudança
+            }
+        }
+
+        function removeItem(productId) {
+            delete cart[productId];
+            updateCart();
+        }
+
+        function clearCart() {
+            cart = {}; 
+            updateCart();
+            alert('O carrinho foi esvaziado!');
+        }
+</script>
+    </script>
+</body>
+</html>
