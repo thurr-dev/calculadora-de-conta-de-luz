@@ -1,0 +1,16 @@
+{
+  "name": "Calculadora Energia Dark",
+  "short_name": "Energia",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#ff4d4d",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2950/2950885.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
