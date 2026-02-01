@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora Energia</title>
+    <title>Calculadora de Energia</title>
     
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#ff4d4d">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="apple-touch-icon" href="https://i.imgur.com/IiCxCzg.png">
+    <link rel="apple-touch-icon" href="https://i.imgur.com/M1cU0lD.png">
+
     <style>
         body { 
             font-family: 'Segoe UI', sans-serif; 
@@ -59,7 +60,7 @@
 
 <div class="container">
     <div class="card">
-        <h2>Calculadora Energia</h2>
+        <h2>Dividir Energia</h2>
         <label>Data da Leitura</label>
         <input type="date" id="dataRef">
         <label>Valor Total da Conta (R$)</label>
@@ -82,12 +83,14 @@
 </div>
 
 <script>
-    // Registro do Service Worker
+    // Registro do Service Worker para PWA
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-            navigator.serviceWorker.register('sw.js')
-            .then(reg => console.log('SW registrado!'))
-            .catch(err => console.log('Erro no SW:', err));
+            navigator.serviceWorker.register('sw.js').then(reg => {
+                console.log('Service Worker registrado com sucesso!');
+            }).catch(err => {
+                console.log('Falha ao registrar Service Worker:', err);
+            });
         });
     }
 
@@ -154,5 +157,3 @@
 </script>
 </body>
 </html>
-
-
