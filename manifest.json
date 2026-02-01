@@ -1,17 +1,16 @@
 {
-  "name": "Calculadora Energia",
+  "name": "Calculadora de Energia",
   "short_name": "Energia",
-  "start_url": "./index.html",
+  "start_url": "index.html",
   "display": "standalone",
   "background_color": "#121212",
   "theme_color": "#ff4d4d",
   "icons": [
     {
-      "src": "https://static.todamateria.com.br/upload/ti/po/tipos-de-energia-og.jpg?class=ogImageSquare.png",
+      "src": "https://i.imgur.com/M1cU0lD.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     }
   ]
 }
-
