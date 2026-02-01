@@ -1,5 +1,5 @@
 {
-  "name": "Calculadora Energia Dark",
+  "name": "Calculadora Energia",
   "short_name": "Energia",
   "start_url": "./index.html",
   "display": "standalone",
@@ -15,3 +15,4 @@
   ]
 
 }
+
