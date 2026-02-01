@@ -1,4 +1,4 @@
-const CACHE_NAME = 'energia-v1';
+const CACHE_NAME = 'energia-v2';
 const assets = [
   './',
   './index.html',
@@ -35,4 +35,5 @@ self.addEventListener('fetch', e => {
     })
   );
 });
+
 
