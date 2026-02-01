@@ -11,7 +11,7 @@ self.addEventListener('install', e => {
       // Baixamos os arquivos normais
       cache.addAll(assets);
       // Baixamos a imagem do Imgur separadamente com modo 'no-cors'
-      return cache.add(new Request('https://i.imgur.com/IiCxCzg.png', {mode: 'no-cors'}));
+      return cache.add(new Request('https://static.todamateria.com.br/upload/ti/po/tipos-de-energia-og.jpg?class=ogImageSquare.png', {mode: 'no-cors'}));
     })
   );
   self.skipWaiting();
@@ -34,3 +34,4 @@ self.addEventListener('fetch', e => {
     })
   );
 });
+
