@@ -2,7 +2,8 @@ const CACHE_NAME = 'energia-v1';
 const assets = [
   './',
   './index.html',
-  './manifest.json'
+  'https://i.imgur.com/IiCxCzg.png', 
+  'https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg'
 ];
 
 // Instalação: Salva arquivos essenciais no cache
@@ -34,3 +35,4 @@ self.addEventListener('fetch', e => {
     })
   );
 });
+
