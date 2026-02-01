@@ -6,15 +6,12 @@
     <title>Calculadora de Energia</title>
     
     <link rel="manifest" href="manifest.json">
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('sw.js')
-        .then(reg => console.log('SW registrado!', reg))
-        .catch(err => console.error('Erro no SW:', err));
-    });
-  }
-</script>
+    <meta name="theme-color" content="#ff4d4d">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="https://i.imgur.com/M1cU0lD.png">
+
+    <style>
         body { 
             font-family: 'Segoe UI', sans-serif; 
             background-color: #121212; 
@@ -251,4 +248,3 @@
 </script>
 </body>
 </html>
-
