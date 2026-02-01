@@ -1,5 +1,5 @@
 {
-  "name": "Calculadora Energia Dark",
+  "name": "Calculadora Energia",
   "short_name": "Energia",
   "start_url": "./index.html",
   "display": "standalone",
@@ -7,7 +7,7 @@
   "theme_color": "#ff4d4d",
   "icons": [
     {
-      "src": "https://imgur.com/M1cU0lD.png",
+      "src": "https://imgur.com/M1cU01D.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
