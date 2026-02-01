@@ -1,7 +1,9 @@
 const CACHE_NAME = 'energia-v1';
 const assets = [
+  const assets = [
   './',
   './index.html',
+  'https://imgur.com/M1cU0lD.png',
   'https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg'
 ];
 
@@ -11,4 +13,5 @@ self.addEventListener('install', e => {
 
 self.addEventListener('fetch', e => {
   e.respondWith(caches.match(e.request).then(res => res || fetch(e.request)));
+
 });
